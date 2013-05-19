@@ -53,8 +53,9 @@ class Model implements Iterator {
   }
 
   /* Field Functions */
-  public function Field ($name, FieldType $type , FieldConstraint $constraint = null) {
-    $this->fields[$name] = new Field ($name, $type, $constraint, $this->table);
+  public function Field ($name, FieldType $type , FieldConstraint $constraint = null , $comment = null) {
+
+    $this->fields[$name] = new Field ($name, $type, $constraint, $this->table, $comment);
     if (is_a ($constraint, 'ForeignKeyField'))
       $this->references[] = $constraint->GetModelName ();
   }

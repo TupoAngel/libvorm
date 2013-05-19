@@ -23,13 +23,15 @@
 class Field {
   private $name = null;
   private $type = null;
+  private $comment = null;
   private $table = null;
   private $constraint = null;
   private $value = null;
 
-  public function __construct ($name, $type, $constraint, $table) {
+  public function __construct ($name, FieldType $type, $constraint, $table, $comment) {
     $this->name = $name;
     $this->type = $type;
+    $this->comment = $comment;
     $this->constraint = $constraint;
     $this->table = $table;
   }
@@ -39,17 +41,13 @@ class Field {
       return $this->$name;
   }
 
-  public function GetFieldType() {
-    return $this->type->type;
-  }
-
   public function __set ($name, $value) {
     if ($name != 'value')
       throw new Exception ("Trying to set an invalid variable: {$name}");
 
     if ($value === '') $value = null;
 
-    $this->value = $value;
+    $this->$name = $value;
   }
 
   function label ($alias) {

@@ -57,16 +57,36 @@ class Session {
 
     $sql = "create table {$model->table} (\n";
 
+    $i = 0;
+    $len = count($model);
+
     foreach ($model as $field) {
+
+      $sql .= " {$field->name} ";
+      $sql .= " {$field->type}";
+
+      // Se o campo atual contiver constraints
       if ($field->constraint) {
-        $sql .= "  {$field->name}";
-        $sql .= " {$field->type}";
-        $sql .= " {$field->constraint},\n";
+        $sql .= " {$field->constraint}";
       }
-      else {
-	       $sql .= "  {$field->name} {$field->type},\n";
+
+      if($field->comment) {
+        $sql .= " comment '{$field->comment}' ";
       }
-    }
+
+      // Finaliza a linha
+      if($i <= $len) {
+        $sql .= ",\n";
+      }
+
+      $i++;
+
+    } // end foreach
+
+    $sql .= ')';
+
+    var_dump($sql);
+
   }
 
   // Model management stuff

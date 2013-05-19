@@ -25,6 +25,14 @@ function Integer () {
   return new IntegerField ('integer');
 }
 
+function UnsignedInteger () {
+  return new UnsignedIntegerField ('unsigned integer');
+}
+
+function AutoIncrement () {
+  return new AutoIncrementField ('unsigned integer auto_increment');
+}
+
 function String ($size) {
   return new StringField ('varchar', $size);
 }
@@ -55,4 +63,8 @@ function ForeignKey ($table, $field = null) {
 
 function Unique () {
   return new UniqueField ();
+}
+
+function Required () {
+  return new RequiredField ();
 }

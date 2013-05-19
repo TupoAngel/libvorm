@@ -21,8 +21,8 @@
  */
 
 class StringField extends Fieldtype {
-  public function __construct ($length) {
-    parent::__construct ('varchar', $length);
+  public function __construct ($type, $length) {
+    parent::__construct ($type, $length);
   }
 
   public function store ($val) {

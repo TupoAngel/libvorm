@@ -38,4 +38,14 @@ class FieldType {
   public function retrieve ($val) {
     return $val;
   }
+
+  public function __ToString () {
+    if(isset($this->length)) {
+      return $this->type . '(' . $this->length . ')';
+    }
+    else {
+      return $this->type;
+    }
+  }
+
 }
