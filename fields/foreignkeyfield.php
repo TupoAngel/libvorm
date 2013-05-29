@@ -24,9 +24,11 @@ class ForeignKeyField extends FieldConstraint {
   private $model = null;
   private $field = null;
 
-  function __construct ($model) {
+  public function __construct ($model, $field) {
     parent::__construct ('foreign key');
+	
     $this->model = $model;
+	$this->field = $field;
   }
 
   function GetModelName () {
@@ -34,6 +36,6 @@ class ForeignKeyField extends FieldConstraint {
   }
 
   function __ToString () {
-    return "references {$this->table} ({$this->field})";
+    return "not null\treferences {$this->model} ({$this->field})";
   }
 }

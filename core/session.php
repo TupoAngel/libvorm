@@ -55,27 +55,28 @@ class Session {
       );
     }
 
-    $sql = "create table {$model->table} (\n";
+    $sql = "\ncreate table {$model->table} (\n";
 
     $i = 0;
-    $len = count($model);
+    $len = count($model->fields);
 
     foreach ($model as $field) {
 
       $sql .= " {$field->name} ";
-      $sql .= " {$field->type}";
+	  
+      $sql .= " {$field->type}\t";
 
       // Se o campo atual contiver constraints
       if ($field->constraint) {
         $sql .= " {$field->constraint}";
       }
-
-      if($field->comment) {
+	  
+	  if($field->comment && !is_a($field->constraint, 'ForeignKeyField')) {
         $sql .= " comment '{$field->comment}' ";
       }
 
       // Finaliza a linha
-      if($i <= $len) {
+      if($i < $len - 1) {
         $sql .= ",\n";
       }
 
