@@ -86,7 +86,7 @@ class Session {
 
     $sql .= ')';
 
-    var_dump($sql);
+    return $sql;
 
   }
 
