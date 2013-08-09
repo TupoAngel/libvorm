@@ -333,6 +333,10 @@ class Session {
   public function rollback () {
     if ($this->conn->InTransaction ()) $this->conn->rollback ();
   }
+  
+  public function getLastInsertID(string $name = NULL) {
+	  return $this->conn->lastInsertId($name);
+  }
 
   /* // metainfo definitions */
   /* /\* TODO: mover para subclasse *\/ */
